@@ -3657,8 +3657,8 @@ public:
                                  StringRef Name,
                                  bool Enabled) const {
     if (Name == "soft-float" || Name == "soft-float-abi" ||
-        Name == "vfp2" || Name == "vfp3" || Name == "vfp4" || Name == "neon" ||
-        Name == "d16" || Name == "neonfp" || Name == "v8fp") {
+        Name == "vfp2" || Name == "vfp3" || Name == "neon" || Name == "d16" ||
+        Name == "neonfp" || Name == "long64" || Name == "v8fp")) {
       Features[Name] = Enabled;
     } else
       return false;
@@ -3682,6 +3682,8 @@ public:
         FPU |= VFP4FPU;
       else if (Features[i] == "+neon")
         FPU |= NeonFPU;
+      else if (Features[i] == "+long64")
+        LongWidth = LongAlign = 64;  // RenderScript uses a 64-bit long type
     }
 
     // Remove front-end specific options which the backend handles differently.

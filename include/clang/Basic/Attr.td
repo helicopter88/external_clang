@@ -335,6 +335,10 @@ def OpenCLImageAccess : Attr {
   let Args = [IntArgument<"Access">];
 }
 
+def Kernel : Attr {
+  let Spellings = [GNU<"kernel">];
+}
+
 def Deprecated : InheritableAttr {
   let Spellings = [GNU<"deprecated">, CXX11<"gnu", "deprecated">];
   let Args = [StringArgument<"Message">];
